@@ -2,3 +2,32 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
     crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+<script>
+    $(() => {
+        $('header .burger-controll button').on('click', () => {
+            $('header nav').toggleClass('show')
+            console.log('xxx')
+        })
+        
+        $('header li a')
+        .each(function(index){
+            $(this).on('click', event=> 
+            {
+                event.preventDefault()
+                let sectionId = this.getAttribute('href')
+                if (sectionId !== '') 
+                {
+                    let section = document.querySelector(sectionId)
+                    section.scrollIntoView({ block: "start", behavior: "smooth" })
+                    $('.nav-link.active').removeClass('active')
+                    console.log($(this).addClass('active'))
+                }
+            });
+        });
+        
+    })
+
+</script>
