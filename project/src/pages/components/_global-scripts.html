@@ -5,29 +5,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
     integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
     crossorigin="anonymous"></script>
-<script>
-    $(() => {
-        $('header .burger-controll button').on('click', () => {
-            $('header nav').toggleClass('show')
-            console.log('xxx')
-        })
-        
-        $('header li a')
-        .each(function(index){
-            $(this).on('click', event=> 
-            {
-                event.preventDefault()
-                let sectionId = this.getAttribute('href')
-                if (sectionId !== '') 
-                {
-                    let section = document.querySelector(sectionId)
-                    section.scrollIntoView({ block: "start", behavior: "smooth" })
-                    $('.nav-link.active').removeClass('active')
-                    console.log($(this).addClass('active'))
-                }
-            });
-        });
-        
-    })
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+    integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.21/jquery.scrollify.min.js"
+        integrity="sha512-UyX8JsMsNRW1cYl8BoxpcamonpwU2y7mSTsN0Z52plp7oKo1u92Xqfpv6lOlTyH3yiMXK+gU1jw0DVCsPTfKew=="
+        crossorigin="anonymous"></script>
