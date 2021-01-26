@@ -20,11 +20,13 @@ if (isStaticServer)
                 },
                 routes: {
                     //* relative path from gulpfile
+
                     // "/bower_components": "bower_components"
                 },
                 
             },
-            tunnel: 'ugsp'
+            tunnel: 'ugsp',
+            online : true
         })
 }
 else

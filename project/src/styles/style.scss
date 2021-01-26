@@ -8,14 +8,47 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-
-header
+#catalog-body
 {
-    z-index: 9;
+
+    background: top no-repeat url('./../img/catalog-bg.jpg');
+    background-size: contain;
+}
+.burger-controll
+{
+    button
+    {
+        z-index: 99;
+        position: fixed;
+        font-size: 36px;
+        right: 5px;
+        top: 5px;
+        border: none;
+        background: transparent;
+        z-index: 99;
+        &:focus
+        {
+            outline: none;
+            box-shadow: none;
+        }
+    }
+    
+}
+
+#main-header
+{
     position: fixed;
     top:0px;
     bottom: 0px;
     right: 0px;
+    @media screen and (max-width : 567px) 
+    {
+        z-index: -1;
+    }
+    &.show
+    {
+        z-index: 1;
+    }
     .navigation-contacts
     {
         margin-right: 50px;
@@ -111,37 +144,81 @@ header
         transition: transform .3s ease-in-out , backdrop-filter .3s .15s ease-out;
         @media screen and (max-width : 567px) {
             transform: translateX(100%);
+            backdrop-filter: blur(10px);
         }
-        backdrop-filter: blur(0px);
         &.show
         {
             transform: translateX(0);
+            z-index: 8;
             @media screen and (max-width : 567px) 
             {
-                backdrop-filter: blur(10px);
             }
         }
     }
-    .burger-controll
+    
+    
+}
+
+#catalog-header
+{
+    a
     {
-        button
+        color: #000;
+        text-decoration: none;
+        transition: color .15s ease, background .15s ease ;
+        
+        &:hover
         {
-            position: fixed;
-            font-size: 36px;
-            right: 5px;
-            top: 5px;
-            border: none;
-            background: transparent;
-            z-index: 99;
-            &:focus
+            color:$light-blue;
+        }
+    }
+    ul
+    {
+        .nav-item
+        {
+            img
             {
-                outline: none;
-                box-shadow: none;
+                transition: filter .3s linear;
             }
+            transition: font-weight .3s linear;
+            &:hover
+            {
+                img
+                {
+                    filter: brightness(0);
+                }
+                a
+                {
+                    color: #000;
+                }
+            }
+            a
+            {
+                transition: color .3s ease-in-out;
+                color: $light-dark;
+            }
+            &.active
+            {
+                font-weight: 600;
+                img
+                {
+                    filter: brightness(0);
+                }
+                a
+                {
+                    color: #000;
+                }
+            }
+            
         }
         
     }
-    
+    // .slick-list
+    // {
+    //     display: flex;
+    //     justify-content: space-around;
+    //     width: 100%;
+    // }
 }
 .h-md-100
 {
@@ -169,7 +246,7 @@ header
     text-decoration: none;
     color: #000;
     font-weight: 500;
-    transition: color .15s ease-in , background .15s ease-in , border .05s ease-in-out;
+    transition: color .15s ease-in , background .15s ease-in , border .05s ease-in-out !important;
     &-square
     {
         padding: 0 10px;
@@ -194,13 +271,13 @@ header
     {
         border: 2px solid $light-blue;
         background: $light-blue;
-        color: #fff;
+        color: #fff !important;
     }
     @media screen  and (max-width : 768px)
     {
         border: 2px solid $light-blue;
         background: $light-blue;
-        color: #fff;
+        color: #fff !important;
     }
 }
 html
@@ -271,6 +348,76 @@ span.acent
         }
     }
 }
+.slick-list
+{
+    @media screen and(max-width : 768px)
+    {
+        z-index: -1 !important;
+    }
+}
+a[data-action="open-form"]
+{
+    opacity: 0%;
+    transition: opacity 1s ease-in-out;
+    &.show
+    {
+        opacity: 100%;
+    }
+}
+.catalog-form
+{
+    display: none;
+    .input-block
+    {
+        margin: 15px 0;
+        input
+        {
+            width: 100%;
+            font-size: 24px;
+        }
+    }
+    button
+    {
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        background: $light-blue;
+        border: none;
+
+        color: #fff;
+        &.gray-bg
+        {
+            background: $gray-btn-bg;
+        }
+        &:focus
+        {
+            outline: none;
+        }
+    }
+    
+}
+.slick-next:before, 
+.slick-prev:before 
+{
+    color: #000 !important;
+}
+.catalog-item
+{
+    border-bottom: 2px solid $light-dark;
+    &-header
+    {
+        font-weight: 700;
+        font-size: 36px;
+    }
+    &-description
+    {
+        span
+        {
+            font-size: 14px;
+            color: $light-gray;
+        }
+    }
+}
 .slick-slide:focus
 {
     outline: none !important;
@@ -278,6 +425,54 @@ span.acent
 .slider-controls
 {
     z-index: 9999;
+}
+.hr
+{
+    margin: 2px 0;
+    opacity: 1;
+    position: relative;
+    width: 100%;
+    height: 2px;
+    background: $light-dark;
+    &::before,
+    &::after
+    {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 5px;
+        background: $light-dark;
+        z-index: 9;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    &::before
+    {
+        left: 0;
+    }
+    &::after
+    {
+        right: 0;
+    }
+}
+
+form
+{
+    input
+    {
+        border: none;
+        font-size: 14px;
+        color: #000;
+        &:focus
+        {
+            outline: none;
+        }
+        background: transparent;
+        &::placeholder
+        {
+            color: $light-gray;
+        }
+    }
 }
 main
 {
@@ -359,52 +554,7 @@ main
         }
         &#contacts
         {
-            form
-            {
-                input
-                {
-                    border: none;
-                    font-size: 14px;
-                    color: #000;
-                    &:focus
-                    {
-                        outline: none;
-                    }
-                    &::placeholder
-                    {
-                        color: $light-gray;
-                    }
-                }
-                .hr
-                {
-                    margin: 2px 0;
-                    opacity: 1;
-                    position: relative;
-                    width: 100%;
-                    height: 2px;
-                    background: $light-dark;
-                    &::before,
-                    &::after
-                    {
-                        content: '';
-                        position: absolute;
-                        width: 6px;
-                        height: 5px;
-                        background: $light-dark;
-                        z-index: 9;
-                        top: 50%;
-                        transform: translateY(-50%);
-                    }
-                    &::before
-                    {
-                        left: 0;
-                    }
-                    &::after
-                    {
-                        right: 0;
-                    }
-                }
-            }
+            
         }
         &#contacts
         {

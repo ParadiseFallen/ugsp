@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Rename me</title>
+    <!-- * favico -->
+    <link rel="icon" href="./../img/favicon.png" type="image/png">
+    <!-- #region Meta tags -->
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="FallenParadise">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- #endregion -->
+
+    <!-- #region Styles -->
+    @@include('./components/_global-head.html')
+    <!-- #endregion -->
+
+</head>
+
+<body id="catalog-body">
+
+    @@include('./components/_catalog-header.html')
+
+    <main>
+        <section id="catalog-items">
+            <div class="container">
+
+                @@for(let i = 0; i < 4; i++)
+                {
+                <div class="row catalog-item my-2">
+                    <div class="col-md-4 order-md-first order-last">
+                        <p class="left-blue-border my-lg-5 d-flex flex-column">
+                            <span class="catalog-item-header">
+                                Мини Экскаватор
+                            </span>
+                        </p>
+                        <div class="catalog-item-description d-flex flex-column my-1">
+                            <span class="my-1">От 500 грн. в час</span>
+                            <span class="my-1">Доставка 1,8 грн/ткм</span>
+                            <span class="my-1">Грузоподъёмность 30т</span>
+                        </div>
+                        <form action="rent.php" class="lex-column catalog-form">
+                            <!-- ! поле для записи id товара -->
+                            <input type="hidden" name="item">
+                            <div class="input-block">
+                                <input type="text" name="name" placeholder="Введите имя">
+                                <div class="hr"></div>
+                            </div>
+                            <div class="input-block">
+                                <input type="tel" name="phone" placeholder="Введите телефон">
+                                <div class="hr"></div>
+                            </div>
+                            <div class="input-block">
+                                <input type="text" name="addres" placeholder="Адрес объекта  ">
+                                <div class="hr"></div>
+                            </div>
+                            <div class="input-block">
+                                <input type="email" name="mail" placeholder="Введите E-mail">
+                                <div class="hr"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 col-12 my-1 order-lg-first order-last">
+                                    <button class="gray-bg" data-action="close-form">Отменить</button>
+                                </div>
+                                <div class="col-lg-6 col-12 my-1">
+                                    <button type="submit" data-action="send-form">Заказать</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="my-5">
+                            <a href="#" class="dark-btn open-form show" data-action="open-form">Заказать</a>
+                        </div>
+                    </div>
+                    <div class="col-md-7 offset-md-1 d-flex flex-column justify-content-center align-items-center">
+                        <div>
+                            <img src="./../img/catalog-1.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+                }
+
+                
+
+            </div>
+        </section>
+    </main>
+
+    @@include('./components/_footer.html')
+    @@include('./components/_global-scripts.html')
+    <script>
+        $(()=>{
+            $('header .slider-body').slick({
+                infinite: true,
+                slidesToShow: 7,
+                slidesToScroll: 3,
+                responsive: [
+                    {
+                        breakpoint: 769,
+                        settings: {
+                            slidesToShow: 5,
+                            slidesToScroll: 3
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 1
+                        }
+                    }
+                ]
+            })
+        })
+    </script>
+    <script>
+
+        $(()=>{
+            $('.catalog-item').each(function()
+            {
+                let item = $(this)
+                let form = item.find('form')
+                let openButton = item.find('a[data-action="open-form"]')
+                item.find('button[data-action="close-form"]').click(event=>{
+                    event.preventDefault()
+                    form.slideUp()
+                    openButton.toggleClass('show')
+                })
+                item.find('button[data-action="send-form"]').click(event=>{
+                    event.preventDefault()
+                    Swal.fire(
+                        'Спасибо!',
+                        'С вами скоро свяжутся',
+                        'success'
+                    )
+                    // ! TODO SEND
+                    console.log(form)
+                })
+
+                openButton.click(event=>{
+                    event.preventDefault()
+                    form.slideDown()
+                    openButton.toggleClass('show')
+                })
+            })
+        })
+        
+    </script>
+</body>
+</html>
